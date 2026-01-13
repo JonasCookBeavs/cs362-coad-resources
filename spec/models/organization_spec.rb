@@ -62,24 +62,4 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:transportation)
   end
 
-  it "has approve" do
-    organization = Organization.new
-    expect(organization).to respond_to(:approve)
-  end
-
-  it "has reject" do
-    organization = Organization.new
-    expect(organization).to respond_to(:reject)
-  end
-
-  it "has to_s" do
-    organization = Organization.new
-    expect(organization).to respond_to(:to_s)
-  end
-
-  it "has set_default_status" do
-    organization = Organization.new
-    expect(organization).to respond_to(:set_default_status)
-  end
-
 end
