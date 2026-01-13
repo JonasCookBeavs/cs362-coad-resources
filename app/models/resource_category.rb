@@ -1,3 +1,9 @@
+# 
+# ResourceCategory is a child of ApplicationRecord. 
+# It contains many tickets and organizations, and also belongs to many organizations. 
+# It validates the presence of a name as well as its length and uniqueness. 
+# It has scopes for active and inactive, and methods to activate or deactivate them.
+# 
 class ResourceCategory < ApplicationRecord
 
   has_and_belongs_to_many :organizations

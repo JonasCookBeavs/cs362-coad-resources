@@ -1,3 +1,8 @@
+#
+# Region is a child of ApplicationRecord. 
+# It contains many tickets and validates the presence of a name as well as its length and uniqueness.
+#
+
 class Region < ApplicationRecord
 
   has_many :tickets

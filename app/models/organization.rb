@@ -1,3 +1,10 @@
+#
+# Organization is a child of ApplicationRecord and describes a group of users. 
+# It contains many users and tickets. It also has many resource_catagories but also belongs to many resource_catagories. 
+# It validates many fields such as email, name, and phone. 
+# Email and name have their length and uniqueness validated, and email also has its format validated. 
+# Finally, description has its length validated. There are several methods to change self.status.
+#
 class Organization < ApplicationRecord
 
   attr_accessor :agreement_one, :agreement_two, :agreement_three, :agreement_four, :agreement_five, :agreement_six, :agreement_seven, :agreement_eight

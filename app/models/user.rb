@@ -1,3 +1,7 @@
+#
+# The User class holds a bunch of information about each user. 
+# When a user is created, it also validates information such as the length of their email and password being valid.
+#
 class User < ApplicationRecord
 
   enum role: [:admin, :organization]

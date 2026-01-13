@@ -1,3 +1,7 @@
+#
+# A Ticket validates information about itself when it is created, checking against the main database. 
+# It also has many scopes that tell us the state or states of each Ticket.
+#
 class Ticket < ApplicationRecord
 
   belongs_to :region
