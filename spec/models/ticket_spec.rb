@@ -27,4 +27,16 @@ RSpec.describe Ticket, type: :model do
     expect(ticket).to respond_to(:closed_at)
   end
   
+  it "belongs to region" do
+    should belong_to(:region)
+  end
+
+  it "belongs to resource_category" do
+    should belong_to(:resource_category)
+  end
+
+  it "belongs to organization" do
+    should belong_to(:organization).optional
+  end
+
 end
