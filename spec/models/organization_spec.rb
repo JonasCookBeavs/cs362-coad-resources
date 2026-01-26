@@ -123,6 +123,26 @@ RSpec.describe Organization, type: :model do
     it "must validate names" do
       should allow_value('name').for(:name)
     end
+
+    it "must validate phone numbers" do
+      should allow_value('+1-555-555-5555').for(:phone)
+    end
+
+    it "must validate email" do
+      should allow_value('test@gmail.com').for(:email)
+    end
+
+    it "must validate primary name" do
+      should allow_value('name').for(:primary_name)
+    end
+
+    it "must validate secondary name" do
+      should allow_value('name').for(:secondary_name)
+    end
+
+    it "must validate secondary phone" do
+      should allow_value('+1-555-555-5555').for(:secondary_phone)
+    end
   
   end
 
