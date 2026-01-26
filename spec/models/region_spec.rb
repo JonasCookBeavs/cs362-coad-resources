@@ -44,10 +44,19 @@ RSpec.describe Region, type: :model do
   end
 
   describe "member function tests" do
-    let (:region_new) { Ticket.new(name: "new") }
+    let (:region_new) { Region.new(name: "new") }
   
     it "converts to a string" do
-      expect (region_new.to_s).to eq ("new")
+      expect(region_new.to_s).to eq ("new")
+    end
+
+  end
+
+  describe "static function tests" do
+
+    it 'returns a region named Unspecified' do
+      region = Region.unspecified
+      expect(region.name).to eq('Unspecified')
     end
 
   end
