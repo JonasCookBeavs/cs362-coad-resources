@@ -74,4 +74,86 @@ RSpec.describe Organization, type: :model do
     should have_and_belong_to_many(:resource_categories)
   end
 
+  describe "validation tests" do
+    
+    subject { Organization.new }
+    
+    it "must have these attributes" do
+      should validate_presence_of(:email)
+      should validate_presence_of(:name)
+      should validate_presence_of(:phone)
+      should validate_presence_of(:status)
+      should validate_presence_of(:primary_name)
+      should validate_presence_of(:secondary_name)
+      should validate_presence_of(:secondary_phone)
+    end
+
+    it "must have a minimum length of 1 for email" do
+      should validate_length_of(:email).is_at_least(1)
+    end
+
+    it "must have a maximum length of 255 for email" do
+      should validate_length_of(:email).is_at_most(255)
+    end
+
+    it "must have a properly formatted email" do
+      should allow_value('test@gmail.com').for(:email)
+    end
+
+    it "must not allow poorly formatted emails" do
+      should_not allow_value('email').for(:email)
+    end
+
+    it "must have a unique email" do
+      should validate_uniqueness_of(:email).case_insensitive
+    end
+
+    it "must have a minimum length of 1 for name" do
+      should validate_length_of(:name).is_at_least(1)
+    end
+
+    it "must have a maximum length of 255 for name" do
+      should validate_length_of(:name).is_at_most(255)
+    end
+
+    it "must have a unique name" do
+      should validate_uniqueness_of(:name).case_insensitive
+    end
+
+    it "must validate names" do
+      should allow_value('name').for(:name)
+    end
+  
+  end
+
+  describe "member function tests" do
+    let (:organization_new) { Organization.new(name: "new") }
+  
+    it "converts to a string" do
+      expect(organization_new.to_s).to eq ("new")
+    end
+
+  end
+
+  describe "static function tests" do
+
+  it "has default status" do
+    org = Organization.new
+    expect(org.status).to eq("submitted")
+  end
+
+  it "has approved status" do
+    org = Organization.new
+    org.approve
+    expect(org.status).to eq("approved")
+  end
+
+  it "has rejected status" do
+    org = Organization.new
+    org.reject
+    expect(org.status).to eq("rejected")
+  end
+
+end
+
 end
