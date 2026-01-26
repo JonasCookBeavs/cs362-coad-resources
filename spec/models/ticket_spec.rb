@@ -39,4 +39,45 @@ RSpec.describe Ticket, type: :model do
     should belong_to(:organization).optional
   end
 
+  describe "validation tests" do
+    
+    subject { Ticket.new }
+    
+    it "must have these attributes" do
+      should validate_presence_of(:name)
+      should validate_presence_of(:phone)
+      should validate_presence_of(:region_id)
+      should validate_presence_of(:resource_category_id)
+    end
+
+    it "must validate phone numbers" do
+      should allow_value('+1-555-555-5555').for(:phone)
+    end
+  
+  end
+
+  describe "member function tests" do
+    let (:ticket_123) { Ticket.new(id: 123) }
+  
+    it "converts to a string" do
+      expect ticket_123.to_s.to eq ("Ticket 123")
+    end
+
+  end
+
+  describe "scope test" do
+    let (:ticket) { Ticket.new() do
+        t = Ticket.new
+        t.save(validate: false)
+        t
+    end
+
+    it "scopes open tickets" do
+      expect(Ticket.open).to include(ticket)
+    end
+
+    # Build tickets that match the 'where' sections in the scope
+    
+  end
+
 end
