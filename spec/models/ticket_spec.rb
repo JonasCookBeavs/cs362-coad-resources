@@ -57,12 +57,30 @@ RSpec.describe Ticket, type: :model do
   end
 
   describe "member function tests" do
-    let (:ticket_123) { Ticket.new(id: 123) }
-  
+    let(:ticket_123) { Ticket.new(id: 123) }
+    let(:closed_ticket) { Ticket.new(closed: true) }
+
+    let(:org) { Organization.new() }
+    let(:captured_ticket) { Ticket.new(organization: org) }
     it "converts to a string" do
-      expect ticket_123.to_s.to eq ("Ticket 123")
+      expect(ticket_123.to_s).to eq ("Ticket 123")
     end
 
+    it "is open" do
+        expect(ticket_123.open?).to be true
+    end
+
+    it "is closed" do
+        expect(closed_ticket.open?).to be false
+    end
+
+    it "is not captured initally" do
+        expect(ticket_123.captured?).to be false
+    end
+
+    it "is captured" do
+        expect(captured_ticket.captured?).to be true
+    end
   end
 
 #   describe "scope test" do
