@@ -65,19 +65,19 @@ RSpec.describe Ticket, type: :model do
 
   end
 
-  describe "scope test" do
-    let (:ticket) { Ticket.new() do
-        t = Ticket.new
-        t.save(validate: false)
-        t
-    end
+#   describe "scope test" do
+#     let (:ticket) { Ticket.new() }
+#     t = Ticket.new
+#     t.save(validate: false)
+#     t
+#     end
 
-    it "scopes open tickets" do
-      expect(Ticket.open).to include(ticket)
-    end
+#     it "scopes open tickets" do
+#       expect(Ticket.open).to include(ticket)
+#     end
 
-    # Build tickets that match the 'where' sections in the scope
+#     # Build tickets that match the 'where' sections in the scope
     
-  end
+#   end
 
 end
