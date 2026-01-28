@@ -11,6 +11,35 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe TicketsHelper, type: :helper do
-# try a ton of phone numbers in different formats and see if they get normalized
-# if need be try putting a puts in tickets_helper to see the format it returns
+  describe 'test phone number format' do
+    it 'formats with dashes' do
+      expect(format_phone_number('555-123-4567')).to eq('+15551234567')
+    end
+
+    it 'formats with spaces with parentheses' do
+      expect(format_phone_number('(555) 123 4567')).to eq('+15551234567')
+    end
+
+    it 'formats with spaces without parentheses' do
+      expect(format_phone_number('555 123 4567')).to eq('+15551234567')
+    end
+
+    it 'formats with dots' do
+      expect(format_phone_number('555.123.4567')).to eq('+15551234567')
+    end
+
+    it 'formats without spaces' do
+      expect(format_phone_number('5551234567')).to eq('+15551234567')
+    end
+
+    it 'formats with spaces with parentheses and +1' do
+      expect(format_phone_number('+1 (555) 123 4567')).to eq('+15551234567')
+    end
+
+    it 'returns nil on failure' do
+      expect(format_phone_number('One two three')).to eq(nil)
+    end
+    
+  end
+
 end
