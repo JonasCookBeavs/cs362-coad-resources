@@ -92,7 +92,7 @@ RSpec.describe Ticket, type: :model do
     end
   end
 
-  describe "scope test" do
+  describe "scope tests" do
     let (:open_ticket) do
       t = Ticket.new(closed: false, organization_id: nil)
       t.save(validate: false)
