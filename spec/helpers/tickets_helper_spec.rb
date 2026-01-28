@@ -11,5 +11,6 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe TicketsHelper, type: :helper do
-
+# try a ton of phone numbers in different formats and see if they get normalized
+# if need be try putting a puts in tickets_helper to see the format it returns
 end
