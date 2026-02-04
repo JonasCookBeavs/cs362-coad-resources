@@ -2,6 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Region, type: :model do
 
+  let(:region) { create(:region, :name => "Some other name") }
+  # use create if it needs to be in the database for the test, otherwise use build
+  setup do
+    @region1 = build(:region, :name => "Region 1")
+    @region2 = build(:region, :name => "Region 2")
+  end
+
   it "has a name" do
     region = Region.new
     expect(region).to respond_to(:name)
