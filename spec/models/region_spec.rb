@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Region, type: :model do
 
-  let(:region) { build(:region, :name => "Some other name") }
+  let(:region) { build(:region) }
   # use create if it needs to be in the database for the test, otherwise use build
 
   it "has a name" do
@@ -40,7 +40,8 @@ RSpec.describe Region, type: :model do
   describe "member function tests" do
 
     it "converts to a string" do
-      expect(region.to_s).to eq ("Some other name")
+      region.name = "Some name"
+      expect(region.to_s).to eq ("Some name")
     end
 
   end
