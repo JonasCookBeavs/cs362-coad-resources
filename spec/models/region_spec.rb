@@ -2,22 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Region, type: :model do
 
-  let(:region) { create(:region, :name => "Some other name") }
+  let(:region) { build(:region, :name => "Some other name") }
   # use create if it needs to be in the database for the test, otherwise use build
-  setup do
-    @region1 = build(:region, :name => "Region 1")
-    @region2 = build(:region, :name => "Region 2")
-  end
 
   it "has a name" do
-    region = Region.new
     expect(region).to respond_to(:name)
-  end
-
-  it "has a string representation that is its name" do
-    name = 'Mt. Hood'
-    region = Region.new(name: name)
-    result = region.to_s
   end
 
   it "has many tickets" do
@@ -25,9 +14,7 @@ RSpec.describe Region, type: :model do
   end
 
   describe "validation tests" do
-    
-    subject { Region.new }
-    
+
     it "must have the name attribute" do
       should validate_presence_of(:name)
     end
@@ -51,10 +38,9 @@ RSpec.describe Region, type: :model do
   end
 
   describe "member function tests" do
-    let (:region_new) { Region.new(name: "new") }
-  
+
     it "converts to a string" do
-      expect(region_new.to_s).to eq ("new")
+      expect(region.to_s).to eq ("Some other name")
     end
 
   end

@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   
+  let(:user) { build(:user, :email => "new@gmail.com") }
+
   it "has email" do
-    user = User.new
     expect(user).to respond_to(:email)
   end
 
   it "has role" do
-    user = User.new
     expect(user).to respond_to(:role)
   end
 
@@ -17,8 +17,6 @@ RSpec.describe User, type: :model do
   end
 
   describe "validation tests" do
-    
-    subject { User.new }
     
     it "must have the email attribute" do
       should validate_presence_of(:email)
@@ -67,10 +65,9 @@ RSpec.describe User, type: :model do
   end
 
   describe "member function tests" do
-    let (:user_new) { User.new(email: "new@gmail.com") }
   
     it "converts to a string" do
-      expect(user_new.to_s).to eq ("new@gmail.com")
+      expect(user.to_s).to eq ("new@gmail.com")
     end
 
   end
@@ -78,9 +75,9 @@ RSpec.describe User, type: :model do
   describe "static function tests" do
 
     it "has default role" do
-      user = User.new
       expect(user.role).to eq("organization")
     end
+    
   end
 
 end
