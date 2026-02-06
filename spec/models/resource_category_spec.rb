@@ -2,13 +2,15 @@ require 'rails_helper'
 
 RSpec.describe ResourceCategory, type: :model do
   
+  let(:resource_category) { build(:resource_category) }
+  let(:active_category)   { create(:resource_category, active: true) }
+  let(:inactive_category) { create(:resource_category, active: false) }
+
   it "has a name" do
-    resource_category = ResourceCategory.new
     expect(resource_category).to respond_to(:name)
   end
 
   it "has active" do
-    resource_category = ResourceCategory.new
     expect(resource_category).to respond_to(:active)
   end
 
@@ -21,7 +23,6 @@ RSpec.describe ResourceCategory, type: :model do
   end
   
   describe "validation tests" do
-    subject { ResourceCategory.new }
 
     it "must have name" do
       should validate_presence_of(:name)
@@ -38,12 +39,10 @@ RSpec.describe ResourceCategory, type: :model do
   end
 
   describe "function tests" do
-    let(:category) { ResourceCategory.new(name: "Resource") }
-    let(:active_category) { ResourceCategory.new(active: true) }
-    let(:inactive_category) { ResourceCategory.new(active: false) }
 
     it "converts to a string" do
-      expect(category.to_s).to eq ("Resource")
+      resource_category.name = "Resource"
+      expect(resource_category.to_s).to eq ("Resource")
     end
 
     it "detects activity" do
@@ -69,25 +68,14 @@ RSpec.describe ResourceCategory, type: :model do
   describe "static function tests" do
 
     it 'returns a resource_category named Unspecified' do
-      resc_cat = ResourceCategory.unspecified
-      expect(resc_cat.name).to eq('Unspecified')
+      unspecified_resc_cat = ResourceCategory.unspecified
+      expect(unspecified_resc_cat.name).to eq('Unspecified')
     end
 
   end
 
   describe "scope tests" do
-    let (:active_category) do
-      c = ResourceCategory.new(active: true)
-      c.save(validate: false)
-      c
-    end
-    
-    let (:inactive_category) do
-      c = ResourceCategory.new(active: false)
-      c.save(validate: false)
-      c
-    end
-    
+
     it "scopes active categories" do
       expect(ResourceCategory.active).to include(active_category)
     end
