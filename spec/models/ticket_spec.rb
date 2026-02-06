@@ -92,6 +92,8 @@ RSpec.describe Ticket, type: :model do
     end
   end
 
+
+  # Create multiple let blocks(factories), one for each unique object you need.
   describe "scope tests" do
     let (:open_ticket) do
       t = Ticket.new(closed: false, organization_id: nil)

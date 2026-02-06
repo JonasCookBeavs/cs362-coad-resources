@@ -2,63 +2,53 @@ require 'rails_helper'
 
 RSpec.describe Organization, type: :model do
   
+  let(:organization) { build(:organization) }
+
   it "has an email" do
-    organization = Organization.new
     expect(organization).to respond_to(:email)
   end
 
   it "has a name" do
-    organization = Organization.new
     expect(organization).to respond_to(:name)
   end
 
   it "has a phone" do
-    organization = Organization.new
     expect(organization).to respond_to(:phone)
   end
 
   it "has a status" do
-    organization = Organization.new
     expect(organization).to respond_to(:status)
   end
 
   it "has a primary name" do
-    organization = Organization.new
     expect(organization).to respond_to(:primary_name)
   end
 
   it "has a secondary name" do
-    organization = Organization.new
     expect(organization).to respond_to(:secondary_name)
   end
 
   it "has a secondary phone" do
-    organization = Organization.new
     expect(organization).to respond_to(:secondary_phone)
   end
 
   it "has a description" do
-    organization = Organization.new
     expect(organization).to respond_to(:description)
   end
 
   it "has a rejection reason" do
-    organization = Organization.new
     expect(organization).to respond_to(:rejection_reason)
   end
 
   it "has liability insurance" do
-    organization = Organization.new
     expect(organization).to respond_to(:liability_insurance)
   end
 
   it "has a title" do
-    organization = Organization.new
     expect(organization).to respond_to(:title)
   end
 
   it "has transportation" do
-    organization = Organization.new
     expect(organization).to respond_to(:transportation)
   end
 
@@ -75,8 +65,6 @@ RSpec.describe Organization, type: :model do
   end
 
   describe "validation tests" do
-    
-    subject { Organization.new }
     
     it "must have these attributes" do
       should validate_presence_of(:email)
@@ -147,10 +135,10 @@ RSpec.describe Organization, type: :model do
   end
 
   describe "member function tests" do
-    let (:organization_new) { Organization.new(name: "new") }
   
     it "converts to a string" do
-      expect(organization_new.to_s).to eq ("new")
+      organization.name = "new"
+      expect(organization.to_s).to eq ("new")
     end
 
   end
@@ -158,20 +146,17 @@ RSpec.describe Organization, type: :model do
   describe "static function tests" do
 
   it "has default status" do
-    org = Organization.new
-    expect(org.status).to eq("submitted")
+    expect(organization.status).to eq("submitted")
   end
 
   it "has approved status" do
-    org = Organization.new
-    org.approve
-    expect(org.status).to eq("approved")
+    organization.approve
+    expect(organization.status).to eq("approved")
   end
 
   it "has rejected status" do
-    org = Organization.new
-    org.reject
-    expect(org.status).to eq("rejected")
+    organization.reject
+    expect(organization.status).to eq("rejected")
   end
 
 end
