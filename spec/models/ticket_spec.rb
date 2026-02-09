@@ -7,6 +7,8 @@ RSpec.describe Ticket, type: :model do
   let(:closed_ticket) { create(:ticket, closed: true) }
   let(:all_org_ticket) { create(:ticket, closed: false, organization_id: 1) }
   let(:org) { create(:organization) }
+  let(:open_ticket_org) { create(:ticket, closed: false, organization_id: org.id) }
+  let(:closed_ticket_org) { create(:ticket, closed: true, organization_id: org.id) }
   let(:reg) { create(:region) }
   let(:region_ticket) { create(:ticket, region_id: reg.id) }
   let(:resc_cat) { create(:resource_category) }
@@ -88,7 +90,7 @@ RSpec.describe Ticket, type: :model do
     end
 
     it "is captured" do
-      ticket.organization = Organization.new()
+      ticket.organization = org
       expect(ticket.captured?).to be true
     end
   end
@@ -113,10 +115,11 @@ RSpec.describe Ticket, type: :model do
       end
 
       it "scopes open tickets by organization" do
-        open_ticket.organization_id = org.id
-        closed_ticket.organization_id = org.id
-        expect(Ticket.organization(org.id)).to include(open_ticket)
-        expect(Ticket.organization(org.id)).not_to include(closed_ticket)
+        expect(Ticket.organization(org.id)).to include(open_ticket_org)
+      end
+
+      it "scopes that closed tickets wont be included in open tickets by organization" do
+        expect(Ticket.organization(org.id)).not_to include(closed_ticket_org)
       end
 
     end
