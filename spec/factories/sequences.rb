@@ -5,8 +5,7 @@ FactoryBot.define do
   end
 
   sequence :phone do |n|
-    "+1-555-#{n}" + ("%04d" % n) # or
-    "+1-555-" + n.to_s.rjust(4, "0")
+    "+1-555-#{n}" + ("%04d" % n)
   end
 
   sequence :name do |n|
