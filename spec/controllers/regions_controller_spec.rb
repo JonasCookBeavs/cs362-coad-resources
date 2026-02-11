@@ -8,6 +8,11 @@ RSpec.describe RegionsController, type: :controller do
     it {
       expect(get(:index)).to redirect_to new_user_session_path
     }
+
+    it {
+      post(:create, params: { region: FactoryBot.attributes_for(:region) })
+      expect(response).to redirect_to new_user_session_path
+    }
   end
 
   describe 'as a logged-in user' do
@@ -18,6 +23,11 @@ RSpec.describe RegionsController, type: :controller do
     it {
       expect(get(:index)).to redirect_to dashboard_path
     }
+
+    it {
+      post(:create, params: { region: FactoryBot.attributes_for(:region) })
+      expect(response).to redirect_to dashboard_path
+    }
   end
 
   describe 'as an admin' do
@@ -27,6 +37,11 @@ RSpec.describe RegionsController, type: :controller do
 
     it {
       expect(get(:index)).to be_successful
+    }
+    
+    it {
+      post(:create, params: { region: FactoryBot.attributes_for(:region) })
+      expect(response).to redirect_to regions_path
     }
   end
 
