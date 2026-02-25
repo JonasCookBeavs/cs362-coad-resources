@@ -21,5 +21,15 @@ RSpec.describe 'Creating a Ticket', type: :feature do
     # ... [expectations] ...
     expect(current_path).to eq ticket_submitted_path
   end
+
+  it 'can fail when done from the home screen' do
+    # Simulate user interaction with the page
+    visit root_path
+    click_on 'Get Help'
+    click_on 'Send this help request'
+
+    # ... [expectations] ...
+    expect(current_path).to eq current_path
+  end
   
 end
