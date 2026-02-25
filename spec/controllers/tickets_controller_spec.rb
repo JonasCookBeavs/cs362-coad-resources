@@ -18,6 +18,14 @@ RSpec.describe TicketsController, type: :controller do
     it {
       expect(get(:new)).to be_successful
     }
+    
+    it {
+      ticket = build(:ticket)
+      allow(ticket).to receive(:save).and_return(false)
+      allow(Ticket).to receive(:new).and_return(ticket)
+      post(:create, params: { ticket: FactoryBot.attributes_for(:ticket) })
+      expect(response).to be_successful
+    }
 
   end
 
@@ -38,6 +46,14 @@ RSpec.describe TicketsController, type: :controller do
 
     it {
       expect(get(:new)).to be_successful
+    }
+
+    it {
+      ticket = build(:ticket)
+      allow(ticket).to receive(:save).and_return(false)
+      allow(Ticket).to receive(:new).and_return(ticket)
+      post(:create, params: { ticket: FactoryBot.attributes_for(:ticket) })
+      expect(response).to be_successful
     }
 
   end
@@ -61,6 +77,21 @@ RSpec.describe TicketsController, type: :controller do
     it {
       expect(get(:new)).to be_successful
     }
+
+    it {
+      ticket = build(:ticket)
+      allow(ticket).to receive(:save).and_return(false)
+      allow(Ticket).to receive(:new).and_return(ticket)
+      post(:create, params: { ticket: FactoryBot.attributes_for(:ticket) })
+      expect(response).to be_successful
+    }
+
+    # how to affect current_user from here
+    # it {
+    #   allow(TicketService).to receive(:capture_ticket).and_return(:found)
+    #   post(:capture)
+    #   expect(response).to be_successful
+    # }
 
   end
 end
