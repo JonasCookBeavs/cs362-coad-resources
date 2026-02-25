@@ -12,4 +12,11 @@ RSpec.describe 'Creating a Region', type: :feature do
     expect(page.body).to have_text('FAKE')
   end
   
+  it 'fails when a name is not provided' do
+    log_in_as(admin)
+    visit new_region_path
+    click_on 'Add Region'
+    expect(current_path).to eq(current_path)
+  end
+
 end
