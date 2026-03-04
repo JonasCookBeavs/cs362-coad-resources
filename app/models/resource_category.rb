@@ -9,9 +9,7 @@ class ResourceCategory < ApplicationRecord
   has_and_belongs_to_many :organizations
   has_many :tickets
 
-  validates_presence_of :name
-  validates_length_of :name, minimum: 1, maximum: 255, on: :create
-  validates_uniqueness_of :name, case_sensitive: false
+  validates :name, presence: true, length: { minimum: 1, maximum: 255 }, uniqueness: { case_sensitive: false }, on: :create
 
   scope :active, -> () { where active: true }
   scope :inactive, -> () { where active: false }

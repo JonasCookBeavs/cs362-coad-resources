@@ -5,8 +5,8 @@ RSpec.describe Ticket, type: :model do
   let(:ticket) { build(:ticket) }
   let(:open_ticket) { create(:ticket, closed: false, organization_id: nil) }
   let(:closed_ticket) { create(:ticket, closed: true) }
-  let(:all_org_ticket) { create(:ticket, closed: false, organization_id: 1) }
   let(:org) { create(:organization) }
+  let(:all_org_ticket) { create(:ticket, closed: false, organization_id: org.id) }
   let(:open_ticket_org) { create(:ticket, closed: false, organization_id: org.id) }
   let(:closed_ticket_org) { create(:ticket, closed: true, organization_id: org.id) }
   let(:reg) { create(:region) }

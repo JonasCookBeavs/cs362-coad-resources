@@ -8,10 +8,10 @@ class Ticket < ApplicationRecord
   belongs_to :resource_category
   belongs_to :organization, optional: true
 
-  validates_presence_of :name, :phone, :region_id, :resource_category_id
-  validates_length_of :name, minimum: 1, maximum: 255, on: :create
-  validates_length_of :description, maximum: 1020, on: :create
-  validates :phone, phony_plausible: true
+  validates :name, presence: true, length: { minimum: 1, maximum: 255 }, on: :create
+  validates :phone, presence: true, phony_plausible: true
+  validates :region_id, :resource_category_id, presence: true
+  validates :description, length: { maximum: 1020 }, on: :create
 
   scope :open, -> () { where closed: false, organization_id: nil }
   scope :closed, -> () { where closed: true }

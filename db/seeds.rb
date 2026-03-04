@@ -106,10 +106,10 @@ if Rails.env == 'development'
     end
   end
 
-  unless Organization.exists?(email: Rails.application.secrets.user[:email].downcase)
+  unless Organization.exists?(email: Rails.application.credentials.user[:email].downcase)
     Organization.create(
       name: 'test organization',
-      email: Rails.application.secrets.user[:email],
+      email: Rails.application.credentials.user[:email],
       phone: 'XXX-XXX-XXXX',
       liability_insurance: true,
       primary_name: 'Primary Name',
@@ -122,11 +122,11 @@ if Rails.env == 'development'
     )
   end
 
-  unless User.exists?(email: Rails.application.secrets.user[:email].downcase)
+  unless User.exists?(email: Rails.application.credentials.user[:email].downcase)
     test_user = User.new(
-      email: Rails.application.secrets.user[:email],
-      password: Rails.application.secrets.user[:password],
-      organization_id: Organization.find_by(email: Rails.application.secrets.user[:email]).id,
+      email: Rails.application.credentials.user[:email],
+      password: Rails.application.credentials.user[:password],
+      organization_id: Organization.find_by(email: Rails.application.credentials.user[:email]).id,
       role: 1
     )
     test_user.skip_confirmation!

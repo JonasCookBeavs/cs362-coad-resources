@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
   before_action :verify_unapproved, only: [:new, :create]
   before_action :verify_approved, only: [:edit, :update]
   before_action :verify_user, only: [:show, :resources]
-  before_action :set_organization, only: [:show, :edit, :update, :approve, :reject]
+  before_action :set_organization, only: [:show, :edit, :update, :approve, :reject, :resources]
 
   def index
     @organizations = Organization.all.order(:name)
@@ -42,6 +42,10 @@ class OrganizationsController < ApplicationController
   end
 
   def show
+  end
+
+  def resources
+    @resources = @organization.resource_categories
   end
 
   def approve

@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.4.2"
+ruby "3.4.8"
 
 gem 'airbrake', '~> 13.0.3'
 gem 'bootsnap', '~> 1.18.0', require: false
-gem 'bootstrap', '~> 5.3'
+gem 'bootstrap', '~> 4.4.1'
 gem 'devise', '~> 4.9'
 gem 'haml', '~> 6.3'
 gem 'haml-rails', '~> 2.1.0'
