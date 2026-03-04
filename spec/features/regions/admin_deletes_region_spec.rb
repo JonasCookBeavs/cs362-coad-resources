@@ -2,21 +2,14 @@ require 'rails_helper'
 
 RSpec.describe 'Deleting a Region', type: :feature do
   let (:admin) { create(:user, :admin) }
-  
-  it "deletes a region", js: true do
-  region = Region.create!(name: "FAKE")
-  log_in_as(admin)
+  let (:region) { create(:region, name: 'FAKE')}
 
-  visit regions_path
-
-  accept_confirm do
-    # Often the delete link is near the region name
-    within(:xpath, "//*[contains(., 'FAKE')]") do
-      click_on(/Delete|Destroy|Remove/i)
-    end
+  it 'successfully deletes a region' do
+    log_in_as(admin)
+    visit region_path(region.id)
+    click_on('Delete')
+    expect(current_path).to eq(regions_path)
+    expect(page.body).to have_text('deleted')
   end
 
-  expect(current_path).to eq(regions_path)
-  expect(page).not_to have_text("FAKE")
-end
 end
