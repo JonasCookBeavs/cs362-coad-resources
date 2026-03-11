@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Capturing a ticket', type: :feature do
   let (:org_usr) { create(:user, :org) }
-  let (:ticket) { create(:ticket, name: "FAKE") }
+  let (:ticket) { create(:ticket) }
 
   it 'successfully captures a ticket' do
     log_in_as(org_usr)

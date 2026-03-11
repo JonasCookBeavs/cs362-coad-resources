@@ -12,6 +12,7 @@ FactoryBot.define do
 
     trait :org do
       role { :organization }
+      organization_id { create(:organization, :approved).id }
     end
 
   end
